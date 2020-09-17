@@ -1,11 +1,18 @@
 Package: rpoliceuk
 Type: Package
-Title: What the Package Does (Title Case)
+Title: Fetches Data From Police Crimes API
 Version: 0.1.0
-Author: Who wrote it
-Maintainer: The package maintainer <yourself@somewhere.net>
-Description: More about what it does (maybe more than one line)
-    Use four spaces when indenting paragraphs within the Description.
-License: What license is it under?
+Author: c(person(given = "Chris",
+             family = "Bailey",
+             role = c("cre", "aut"),
+             email = "c.jamesbailey@gmail.com"),
+      person(given = "Peter",
+             family = "Reddy",
+             role = "ctb",
+             email = "preddy@volterra.co.uk"))
+Description: Fetches data on street level crimes from the police.uk API.
+    The functions can be used to fetch crimes within a user-defined polygon.
+License: MIT
 Encoding: UTF-8
 LazyData: true
+RoxygenNote: 7.1.0
