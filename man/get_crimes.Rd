@@ -20,8 +20,7 @@ street level crimes as dataframe
 Fetches crimes from the police.uk API within a given sf polygon.
 }
 \examples{
-localauth <- read_sf('https://opendata.arcgis.com/datasets/54b65ffb42c2480b88a20899aff750de_0.geojson')
-wandsworth <- localauth \%>\% st_sf() \%>\% filter(lad20nm == 'Wandsworth')
-get_crimes(wandsworth, start_month = '2020-03', end_month = '2020-07')
+camden_poly <- localauth_ldn[localauth_ldn$lad20nm == 'Camden',]
+get_crimes(camden_poly, start_month = '2020-03', end_month = '2020-07')
 
 }
