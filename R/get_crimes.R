@@ -68,7 +68,7 @@ get_crimes <- function(polygon, start_month='latest', end_month='latest'){
   poly_coords <- polygon %>% # Need to ask Chris if it's okay to pipe
     sf::st_coordinates() %>%
     as.data.frame() %>%
-    select(X, Y)
+    dplyr::select(X, Y)
 
   # Create character list of dates to pass into POST request
   poly_coords_list <- paste0(round(poly_coords$Y,5),',',round(poly_coords$X,5), collapse=':')
