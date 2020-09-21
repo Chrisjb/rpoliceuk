@@ -1,13 +1,22 @@
 #' London Local Authority GIS Data
 #'
-#' A dataset containing 2020 Local Authority boundaries for London
+#' A dataset containing 2020 Local Authority boundaries for London. \cr
+#'     Source: Office for National Statistics licensed under the Open Government Licence v.3.0 \cr
+#'     Contains OS data © Crown copyright and database right [2020]
 #'
-#' @format A sf object with 5 variables:
+#' @format A sf object with 11 variables:
 #' \describe{
-#' \item{Name}{Local Authority Name}
-#' \item{Code}{Official Local Authority ID}
-#' \item{Full_Description}{Concatenated Name and Code}
-#' \item{geometry}{geometry column}
+#' \item{objectid}{ID}
+#' \item{lad20cd}{official local authority code}
+#' \item{lad20nm}{local authority name}
+#' \item{lad20nmw}{blank}
+#' \item{bng_e}{easting}
+#' \item{bng_n}{northing}
+#' \item{long}{longitude}
+#' \item{lat}{latitude}
+#' \item{st_areashape}{shape area m2}
+#' \item{st_lengthshape}{shape length}
+#' \item{geometry}{sf geometry column}
 #' }
 #' @source \url{https://geoportal.statistics.gov.uk/datasets/local-authority-districts-may-2020-boundaries-uk-bgc}
 "localauth_ldn"
