@@ -21,6 +21,17 @@
 #' @export
 
 get_crimes <- function(polygon, start_month='latest', end_month='latest'){
+
+  ## force polygon to be 4326
+  polygon <- sf::st_transform(polygon, 4326)
+
+  ## if type not POLYGON OR MULTIPOLYGON, force type to MULTIPOLYGON
+  type <- sf::st_geometry_type(polygon)
+  if(length(unique(type)) > 1){
+    warning('Polygon entered is a geometry collection. Casting to MULTIPOLYGON.')
+    polygon <- st_cast(polygon, 'MULTIPOLYGON')
+  }
+
   ## get available dates for validation checks
   req <- httr::GET(url = 'https://data.police.uk/api/crimes-street-dates')
   res <- httr::content(req, simplifyDataFrame=TRUE, flatten=TRUE)
@@ -69,6 +80,11 @@ get_crimes <- function(polygon, start_month='latest', end_month='latest'){
     sf::st_coordinates() %>%
     as.data.frame() %>%
     dplyr::select(X, Y)
+
+  # check for large polygons
+  if(nrow(poly_coords) > 15000) {
+    stop(paste0('The polygon is too complex (',nrow(poly_coords),' coordinates), the maximum allowed is 15,000.\n If you are trying to use multiple polygons, you may want to sf::st_union into a single polygon. Else simplify to a lower level of detail (see sf:st_simplify).'))
+  }
 
   # Create character list of dates to pass into POST request
   poly_coords_list <- paste0(round(poly_coords$Y,5),',',round(poly_coords$X,5), collapse=':')
